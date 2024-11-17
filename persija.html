@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vs persija</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #fff;
+            background-image: url('backgroundpersija.jpg'); /* Ganti dengan path gambar background */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .header {
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        .text-content {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            color: #000;
+            text-align: left;
+            font-size: 16px;
+            display: none; /* Tersembunyi awalnya */
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            width: 250px;
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Gaya popup */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            position: relative;
+            width: 80%;
+            max-width: 700px;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .popup-content img,
+        .popup-content video {
+            width: 100%;
+            height: auto;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="header">vs persija</h1>
+    </header>
+
+    <!-- Tombol untuk menampilkan cerita -->
+    <button onclick="toggleStory()" style="margin-top: 20px; padding: 10px 20px; border: none; background: #007bff; color: #fff; border-radius: 5px; cursor: pointer;">
+        Baca Cerita
+    </button>
+
+    <!-- Teks cerita yang tersembunyi -->
+    <div class="text-content" id="story">
+        VS PERSIJA
+        saat itu kami membeli tiket dengan segala ke ribetanya kami war tiket saat sekolah dengan segala keribetan tentang member biru member putih,saat sampai hari pertandingan kami menukar tiket dengan berbeda beda tempat penukaran,hikmal saat itu menukar tiket ke kodim sendiri walaupun dia harus ulangan terlebih dahulu,azmi menukar tiket ke yonzipur,dimas dan rafi menukar ke den jasa,diego dan adiknya menukar ke kodim,saat itu hikmal tiba tiba kehilangan tiketnya setelah ulangan yang akhrinya di temukan setelah terjatuh di pinggir jalan setelah itu mereka berkumpul dan berangkat ke tempat korteo,sesudah korteo mereka memasuki stadion sambil bernyanyi menyemangati maung bandung,gol di cetak oleh dimas drajad pada babak pertama mereka bersorak gembira dan northen wall semakin membara berisik nya sambil bersorak dimas drajad🥳🥳,sampai di babak 2 ryan kurnia membuat si jalak harupat bergemuruh kencang,peluit di bunyikan kemenangan untuk maung bandung2-0, sayangnya para pemain persib tidak merayakan kemenangan mereka bersama kami,sejumlah emosi dan amarah entah apa merasuki para penonton mereka turun memukuli para steward teringat pada pertandingan sebelumnya steward dikaitkan dengan kasus pelecehan situasi menegangkan saat para penonton turun para polisi datang para keadaan kembali membaik, sampai di situ kami pulanh dengan bahagia dan kemenangan untuk persib bandung atas persija jakarta 20.
+    </div>
+
+    <!-- Galeri Foto -->
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="persija.jpg" alt="persija" onclick="showPopupImage('persija.jpg')">
+        </div>
+        <div class="gallery-item">
+            <img src="persija2.jpg" alt="arema" onclick="showPopupImage('persija2.jpg')">
+        </div>
+        <div class="gallery-item">
+            <img src="persija3.jpg" alt="biak" onclick="showPopupImage('persija3.jpg')">
+        </div>
+        <div class="gallery-item">
+            <img src="persija4.jpg" alt="psm" onclick="showPopupImage('persija4.jpg')">
+        </div>
+        <div class="gallery-item">
+            <img src="vidio.jpg" alt="Video Thumbnail" onclick="showPopupVideo()">
+        </div>
+    </div>
+
+    <!-- Popup untuk gambar -->
+    <div class="popup-overlay" id="popup-image">
+        <div class="popup-content">
+            <span class="close-button" onclick="closePopupImage()">&times;</span>
+            <img id="popup-img" src="" alt="popup image" style="border-radius: 8px;">
+        </div>
+    </div>
+
+    <!-- Popup untuk video -->
+    <div class="popup-overlay" id="popup-video">
+        <div class="popup-content">
+            <span class="close-button" onclick="closePopupVideo()">&times;</span>
+            <video id="popup-video-content" controls>
+                <source src="video.mp4" type="video/mp4">
+                Browser anda tidak mendukung tag video.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk menampilkan atau menyembunyikan cerita
+        function toggleStory() {
+            const story = document.getElementById("story");
+            story.style.display = story.style.display === "none" || story.style.display === "" ? "block" : "none";
+        }
+
+        // Fungsi untuk menampilkan popup gambar
+        function showPopupImage(src) {
+            const popupImage = document.getElementById("popup-image");
+            const popupImg = document.getElementById("popup-img");
+            popupImg.src = src;
+            popupImage.style.display = "flex";
+        }
+
+        // Fungsi untuk menutup popup gambar
+        function closePopupImage() {
+            const popupImage = document.getElementById("popup-image");
+            popupImage.style.display = "none";
+        }
+
+        // Fungsi untuk menampilkan popup video
+        function showPopupVideo() {
+            const popupVideo = document.getElementById("popup-video");
+            popupVideo.style.display = "flex";
+        }
+
+        // Fungsi untuk menutup popup video dan menghentikan pemutaran
+        function closePopupVideo() {
+            const popupVideo = document.getElementById("popup-video");
+            popupVideo.style.display = "none";
+            const video = document.getElementById("popup-video-content");
+            video.pause();
+            video.currentTime = 0;
+        }
+    </script>
+</body>
+</html>

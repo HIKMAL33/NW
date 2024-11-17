@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>northern wall</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #fff;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            background-color: transparent;
+            z-index: 15;
+        }
+
+        .header-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .content {
+            margin-top: 100px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            width: 250px;
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .description {
+            margin-top: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #000;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: transparent;
+            color: white;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: left 0.3s ease, background 0.3s ease;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin: 15px 0;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        .sidebar.active {
+            left: 0;
+            background: rgba(0, 0, 0, 0.9); /* Warna sidebar saat aktif */
+        }
+
+        .sidebar a:first-child {
+            background-color: white;
+            color: black;
+            border-radius: 5px;
+            padding: 2px 8px; /* Ukuran padding lebih kecil */
+            display: inline-block; /* Agar tidak terlalu lebar */
+        }
+    </style>
+</head>
+<body>
+    <header class="header" onclick="toggleSidebar()"> <!-- Header bisa diklik -->
+        <img src="header.jpg" alt="header image" class="header-image">
+    </header>
+
+    <div class="sidebar" id="sidebar">
+        <a href="index.html">Match</a>
+        <a href="member.html">Member</a>
+        <a href="about.html">About</a>
+    </div>
+
+    <div class="content">
+        <div class="gallery">
+            <div class="gallery-item">
+                <a href="persija.html"><img src="foto1.jpg" alt="foto 1"></a>
+                <div class="description">VS PERSIJA</div>
+            </div>
+            <div class="gallery-item">
+                <a href="arema.html"><img src="foto2.jpg" alt="foto 2"></a>
+                <div class="description">VS AREMA</div>
+            </div>
+            <div class="gallery-item">
+                <a href="biak.html"><img src="foto3.jpg" alt="foto 3"></a>
+                <div class="description">VS BIAK</div>
+            </div>
+            <div class="gallery-item">
+                <a href="psm.html"><img src="foto4.jpg" alt="foto 4"></a>
+                <div class="description">VS PSM</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>

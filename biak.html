@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vs biak</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #fff;
+            background-image: url('backgroundbiak.jpg'); /* Ganti dengan path gambar background */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .header {
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        .text-content {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            color: #000;
+            text-align: left;
+            font-size: 16px;
+            display: none;
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            width: 250px;
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            position: relative;
+            width: 80%;
+            max-width: 700px;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .popup-content img {
+            width: 100%;
+            height: auto;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="header">vs biak</h1>
+    </header>
+
+    <button onclick="toggleStory()" style="margin-top: 20px; padding: 10px 20px; border: none; background: #007bff; color: #fff; border-radius: 5px; cursor: pointer;">
+        Baca Cerita
+    </button>
+
+    <div class="text-content" id="story">
+        Cerita pertandingan Persib Bandung vs Biak akan muncul di sini.
+    </div>
+
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="biak1.jpg" alt="biak1" onclick="showPopupImage('biak1.jpg')">
+        </div>
+        <div class="gallery-item">
+            <img src="biak2.jpg" alt="biak2" onclick="showPopupImage('biak2.jpg')">
+        </div>
+        <div class="gallery-item">
+            <img src="biak3.jpg" alt="biak3" onclick="showPopupImage('biak3.jpg')">
+        </div>
+        <div class="gallery-item">
+            <img src="biak4.jpg" alt="biak4" onclick="showPopupImage('biak4.jpg')">
+        </div>
+        <div class="gallery-item">
+            <img src="biak5.jpg" alt="biak5" onclick="showPopupImage('biak5.jpg')">
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="popup-image">
+        <div class="popup-content">
+            <span class="close-button" onclick="closePopupImage()">&times;</span>
+            <img id="popup-img" src="" alt="popup image" style="border-radius: 8px;">
+        </div>
+    </div>
+
+    <script>
+        function toggleStory() {
+            const story = document.getElementById("story");
+            story.style.display = story.style.display === "none" || story.style.display === "" ? "block" : "none";
+        }
+
+        function showPopupImage(src) {
+            const popupImage = document.getElementById("popup-image");
+            const popupImg = document.getElementById("popup-img");
+            popupImg.src = src;
+            popupImage.style.display = "flex";
+        }
+
+        function closePopupImage() {
+            const popupImage = document.getElementById("popup-image");
+            popupImage.style.display = "none";
+        }
+    </script>
+</body>
+</html>
